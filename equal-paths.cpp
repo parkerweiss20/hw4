@@ -24,7 +24,6 @@ void dfs(Node* node, unsigned int depth, vector<unsigned int>& depths) {
 
 bool equalPaths(Node * root)
 {
-    // Add your code below
     if(!root){
       return true;
     }
