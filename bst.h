@@ -37,6 +37,7 @@ public:
     void setRight(Node<Key, Value>* right);
     void setValue(const Value &value);
 
+
 protected:
     std::pair<const Key, Value> item_;
     Node<Key, Value>* parent_;
@@ -181,6 +182,7 @@ void Node<Key, Value>::setValue(const Value& value)
 {
     item_.second = value;
 }
+
 
 /*
   ---------------------------------------
@@ -678,32 +680,29 @@ BinarySearchTree<Key, Value>::getSmallestNode() const
 * return a pointer to it or NULL if no item with that key
 * exists
 */
+
 template<typename Key, typename Value>
 Node<Key, Value>* BinarySearchTree<Key, Value>::internalFind(const Key& key) const
 {
-Node<Key, Value>* temp = root_;
-    if(root_ == nullptr){
-        temp = nullptr;
-    }  
-    while (!(nullptr == temp))
-    {
-        if (temp->getKey() == key) 
-        {
-        return temp; 
+    // TODO
+    Node<Key, Value>* temp = root_;
+    if(root_ == NULL){
+        temp=NULL;
+    }
+    while(!(temp==NULL)){
+        if(temp->getKey()>key){
+            temp=temp->getLeft();
+        }
+        else if(temp->getKey()<key){
+            temp=temp->getRight();
         }
         else{
-            if (temp->getKey() < key) 
-            {
-            temp = temp->getRight(); 
-            }
-            if (temp->getKey() > key)
-            {
-            temp = temp->getLeft(); 
-            }
+            return temp;
         }
     }
-  return NULL;
+    return temp;
 }
+
 
 /**
  * Return true iff the BST is balanced.
